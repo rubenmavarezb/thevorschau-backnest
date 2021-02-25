@@ -6,7 +6,7 @@ import { AuthenticateUser } from './dto/authenticate-user.dto';
 export class AuthService {
 
     authenticateUser(authUser: AuthenticateUser) {
-        return 'autenticando...'
+        return authUser
     }
 
     userAuthenticated() {

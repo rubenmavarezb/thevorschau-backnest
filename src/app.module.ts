@@ -8,18 +8,18 @@ import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
-    AuthModule,
-    UserModule,
     ConfigModule.forRoot({
       envFilePath: '.env',
       isGlobal: true,
     }),
-    MongooseModule.forRoot(process.env.DB_MONGO, {
+    MongooseModule.forRoot('mongodb+srv://thevorschau:root@cluster0.jf7x9.mongodb.net/thevorschau', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: false,
       useCreateIndex: true,
     }),
+    AuthModule,
+    UserModule,
   ],
   controllers: [],
   providers: [],
