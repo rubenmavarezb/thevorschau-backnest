@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 ///////////////////////////////////////////////////
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { ProductsModule } from './products/products.module';
 ///////////////////////////////////////////////////
 
 @Module({
@@ -12,14 +13,18 @@ import { UserModule } from './user/user.module';
       envFilePath: '.env',
       isGlobal: true,
     }),
-    MongooseModule.forRoot('mongodb+srv://thevorschau:root@cluster0.jf7x9.mongodb.net/thevorschau', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-      useCreateIndex: true,
-    }),
+    MongooseModule.forRoot(
+      'mongodb+srv://thevorschau:root@cluster0.jf7x9.mongodb.net/thevorschau',
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+        useCreateIndex: true,
+      },
+    ),
     AuthModule,
     UserModule,
+    ProductsModule,
   ],
   controllers: [],
   providers: [],

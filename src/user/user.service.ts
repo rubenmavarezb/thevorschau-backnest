@@ -1,10 +1,11 @@
-import { Injectable, HttpException, HttpStatus} from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { validate, ValidationError } from 'class-validator';
+/////////////////////////////////////////////////////
 import { Model } from 'mongoose';
 import { Response } from 'express';
 import * as bcrypt from 'bcrypt';
-import { User, UserDocument } from './user.schema';
+////////////////////////////////////////////////////
+import { UserDocument } from './user.schema';
 import { CreateUser } from './dto/create-user.dto';
 
 
