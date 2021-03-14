@@ -1,7 +1,10 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Res,  } from '@nestjs/common';
+import { Response } from 'express';
+////////////////////////////////////////////////////////////////////
 import { AuthService } from './auth.service';
 import { AuthenticateUser } from './dto/authenticate-user.dto';
-
+import { UserAuthenticated } from './dto/user-authenticated.dto';
+////////////////////////////////////////////////////////////////////
 
 @Controller('auth')
 export class AuthController {
@@ -12,8 +15,9 @@ export class AuthController {
     authenticateUser(@Body() user:AuthenticateUser) {
         return this.authService.authenticateUser(user);
     }
+    
     @Get()
-    userAuthenticated() {
-        return this.authService.userAuthenticated();
+    userAuthenticated(@Body() user:UserAuthenticated, @Res() res: Response) {
+        return this.authService.userAuthenticated(user, res);
     }
 }

@@ -1,3 +1,4 @@
+import { CartModule } from './cart/cart.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -25,6 +26,7 @@ import { ProductsModule } from './products/products.module';
     AuthModule,
     UserModule,
     ProductsModule,
+    CartModule,
   ],
   controllers: [],
   providers: [],

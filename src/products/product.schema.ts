@@ -20,6 +20,9 @@ export class Product {
     
     @Prop({ required: true, trim: true })
     price: number;
+
+    @Prop({ required: true, trim: true })
+    quantity: number;
     
     @Prop({ required: true, trim: true })
     stock: number;

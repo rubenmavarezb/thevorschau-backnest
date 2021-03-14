@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-///////////////////////////////////////////////////
+///////////////////////////////////////////////////////
 import { Model } from 'mongoose';
 import { Response } from 'express';
-///////////////////////////////////////////////////
+///////////////////////////////////////////////////////
 import { ProductDocument } from './product.schema';
-import { AddProductDTO } from './dto/add-product.dto'
+import { AddProductDTO } from './dto/add-product.dto';
+//////////////////////////////////////////////////////
 
 @Injectable()
 export class ProductsService {
@@ -13,33 +14,39 @@ export class ProductsService {
     constructor(@InjectModel('Product') private productModel: Model<ProductDocument>){}
 
     async getAllProducts(res: Response) {
-        console.log('Desde getProductById')
+        
         try {
             const allProds = await this.productModel.find({});
-            res.status(200).json({products: allProds})
+            res.status(200).json({products: allProds});
         } catch (error) {
-            console.log(error)
+            console.log(error);
+            res.status(400).json({msg: 'There was a mistake uploading the products'});
         }
     }
 
     async getProductById(id: string, res: Response) {
-        console.log(id)
+        
         try {
             const prod = await this.productModel.findById(id);
-            console.log(prod)
             res.status(200).json({product: prod});
         } catch (error) {
-            console.log(error)
+            console.log(error);
+            res.status(400).json({msg: "There was a mistake uploading the product"});
         }
     }
 
     async getProductsByCategory(category:string, res: Response) {
-        console.log(category)
-        console.log('Desde getProductsByCategory')
+
+        try {
+            const products = await this.productModel.find({category})
+            res.status(200).json({products: products});
+        } catch (error) {
+            console.log(error)
+            res.status(400).json({msg: "There was a mistake uploading the product"});
+        }
     }
 
     async addProduct(product: AddProductDTO, res: Response) {
-        console.log(product)
 
         let prod = new this.productModel(product);
 
